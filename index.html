@@ -156,6 +156,15 @@
       text-align: right;
     }
 
+    /* ─── STICKY HEADER WRAPPER ─── */
+    .site-header {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 200;
+    }
+
     /* ─── SCARCITY TOP BAR ─── */
     .top-bar {
       background: #001059;
@@ -448,21 +457,23 @@
     <button type="button" class="cookie-close" onclick="acceptCookies()">הבנתי</button>
   </div>
 
-  <!-- TOP URGENCY BAR -->
-  <div class="top-bar">
-    מספר המקומות מוגבל ל100 אבחונים בלבד- ברגע שנגמר נגמר
-  </div>
+  <header class="site-header">
+    <!-- TOP URGENCY BAR -->
+    <div class="top-bar">
+      מספר המקומות מוגבל ל100 אבחונים בלבד- ברגע שנגמר נגמר
+    </div>
 
-  <!-- NAV -->
-  <nav class="site-nav">
-    <a href="#"><img src="icon.png" alt="אורטודוק" style="height:52px;width:auto;display:block;"></a>
-    <a href="tel:0505752688" style="font-size:.85rem;font-weight:700;color:#001059;text-decoration:none;border-bottom:2px solid #159910;padding-bottom:1px;display:inline-flex;align-items:center;gap:.3rem">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 5.94 5.94l.91-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      0505752688
-    </a>
-  </nav>
+    <!-- NAV -->
+    <nav class="site-nav">
+      <a href="#"><img src="icon.png" alt="אורטודוק" style="height:52px;width:auto;display:block;"></a>
+      <a href="tel:0505752688" style="font-size:.85rem;font-weight:700;color:#001059;text-decoration:none;border-bottom:2px solid #159910;padding-bottom:1px;display:inline-flex;align-items:center;gap:.3rem">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 5.94 5.94l.91-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        0505752688
+      </a>
+    </nav>
+  </header>
 
-  <main id="main">
+  <main id="main" style="padding-top: var(--header-h, 90px);">
 
     <!-- ══════════════════════════
          HERO
@@ -496,7 +507,7 @@
 
 
         <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:center;">
-          <a href="https://wa.me/972505752688?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%9E%D7%A7%D7%95%D7%9D%20%D7%9C%D7%90%D7%91%D7%97%D7%95%D7%9F" class="cta-main" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.6rem;">
+          <a href="https://wa.me/972505752688?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%93%D7%A3%20%D7%A9%D7%9C%D7%9B%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%A9%D7%99%D7%97%D7%94%20%D7%9C%D7%99%D7%99%D7%A2%D7%95%D7%A5%20%D7%9E%D7%A7%D7%A6%D7%95%D7%A2%D7%99" class="cta-main" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.6rem;">
             <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor"><path d="M16 0C7.163 0 0 7.163 0 16c0 2.822.736 5.472 2.027 7.774L0 32l8.418-2.004A15.93 15.93 0 0 0 16 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.28 13.28 0 0 1-6.773-1.848l-.486-.29-5.001 1.191 1.226-4.862-.317-.499A13.266 13.266 0 0 1 2.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.27-9.878c-.398-.199-2.354-1.162-2.719-1.294-.365-.133-.63-.199-.896.199-.265.398-1.028 1.294-1.26 1.56-.232.265-.464.298-.862.1-.398-.199-1.681-.619-3.202-1.977-1.183-1.057-1.982-2.362-2.214-2.76-.232-.398-.025-.613.175-.811.179-.178.398-.464.597-.696.199-.232.265-.398.398-.664.133-.265.066-.497-.033-.696-.1-.199-.896-2.16-1.228-2.958-.323-.776-.651-.671-.896-.683l-.764-.013c-.265 0-.696.1-.1061.497-.365.398-1.394 1.361-1.394 3.32 0 1.959 1.427 3.851 1.626 4.116.199.265 2.808 4.287 6.803 5.872.951.411 1.693.656 2.271.839.954.304 1.823.261 2.51.158.766-.114 2.354-.963 2.686-1.894.332-.93.332-1.727.232-1.893-.099-.165-.364-.265-.762-.464z"/></svg>
             <span>קבעו מקום עכשיו</span>
           </a>
@@ -575,10 +586,11 @@
         </div>
       </div>
 
-      <div style="margin-top:2.5rem;padding:1.5rem;background:#001059;border-radius:4px;border-right:4px solid #159910;">
-        <p style="color:#f4f6fb;font-size:1rem;font-weight:600;line-height:1.6;">
-          הבעיה לא בכאב — הכאב הוא רק הסימפטום.<br>
-          <span style="color:rgba(244,246,251,.55);">בוריס לימד שכף הרגל מספרת כל מה שקורה בגוף. רזיאל, בנו, ממשיך לקרוא אותה.</span>
+      <div style="margin-top:2.5rem;padding:1.4rem 1.2rem;background:#001059;border-radius:8px;border-right:4px solid #159910;">
+        <p style="color:#f4f6fb;font-size:clamp(.95rem,4vw,1.1rem);font-weight:400;line-height:1.85;letter-spacing:0.01em;font-style:italic;margin:0;text-align:right;">
+          שומרים על מסורת של עשרות שנים של ידע<br>
+          במקביל להבנה טכנולוגית —<br>
+          <span style="color:#7ecb7e;font-weight:700;font-style:normal;">אך מבינים שאין תחליף לעבודת יד</span>
         </p>
       </div>
     </section>
@@ -738,8 +750,8 @@
         </h2>
 
         <p style="font-size:1rem;color:rgba(255,255,255,.8);margin-bottom:2.5rem;line-height:1.6;">
-          כל מקום שמתפנה נלקח תוך שעות.<br>
-          <strong>ייעוץ ראשוני ללא עלות.</strong> בדוק אם אנחנו יכולים לעזור לך.
+          אנו מזמינים אתכם לשיחת ייעוץ טלפונית <span style="border-bottom:3px solid #001059;padding-bottom:2px;">ללא כל עלות</span><br>
+          השאירו פרטים ונחזור בהקדם
         </p>
 
         <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;max-width:340px;margin:0 auto;">
@@ -782,7 +794,7 @@
             </div>
           </form>
 
-          <a href="https://wa.me/972505752688?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%9E%D7%A7%D7%95%D7%9D" target="_blank" rel="noopener" style="
+          <a href="https://wa.me/972505752688?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%93%D7%A3%20%D7%A9%D7%9C%D7%9B%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%A9%D7%99%D7%97%D7%94%20%D7%9C%D7%99%D7%99%D7%A2%D7%95%D7%A5%20%D7%9E%D7%A7%D7%A6%D7%95%D7%A2%D7%99" target="_blank" rel="noopener" style="
             display:block;width:100%;text-align:center;
             background:transparent;color:#fff;
             font-weight:700;font-size:1rem;
@@ -845,7 +857,7 @@
   </div>
 
   <!-- WHATSAPP FLOAT -->
-  <a href="https://wa.me/972505752688?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%9E%D7%A7%D7%95%D7%9D" class="wa-btn" aria-label="פתח WhatsApp" target="_blank" rel="noopener">
+  <a href="https://wa.me/972505752688?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%93%D7%A3%20%D7%A9%D7%9C%D7%9B%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%A9%D7%99%D7%97%D7%94%20%D7%9C%D7%99%D7%99%D7%A2%D7%95%D7%A5%20%D7%9E%D7%A7%D7%A6%D7%95%D7%A2%D7%99" class="wa-btn" aria-label="פתח WhatsApp" target="_blank" rel="noopener">
     <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
 
@@ -930,6 +942,19 @@
       document.body.style.paddingTop = '';
       localStorage.setItem('ck_ok', '1');
     }
+
+    // Sync main padding-top with actual sticky header height
+    (function() {
+      const hdr = document.querySelector('.site-header');
+      const main = document.getElementById('main');
+      function syncHeaderHeight() {
+        const h = hdr.offsetHeight;
+        document.documentElement.style.setProperty('--header-h', h + 'px');
+        main.style.paddingTop = h + 'px';
+      }
+      syncHeaderHeight();
+      window.addEventListener('resize', syncHeaderHeight);
+    })();
 
     // Modals
     let _lastFocus = null;
