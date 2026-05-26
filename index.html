@@ -1024,12 +1024,14 @@
       }
 
       const statsBar = document.querySelector('.stats-bar');
+      let triggered = false;
       const observer = new IntersectionObserver(function(entries) {
-        if (entries[0].isIntersecting) {
+        if (entries[0].isIntersecting && !triggered) {
+          triggered = true;
           counters.forEach(animateCounter);
           observer.disconnect();
         }
-      }, { threshold: 0.3 });
+      }, { threshold: 0.4, rootMargin: '0px 0px -80px 0px' });
       observer.observe(statsBar);
     })();
 
