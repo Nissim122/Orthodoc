@@ -62,8 +62,9 @@
       transition: background .18s, transform .18s cubic-bezier(.34,1.56,.64,1), box-shadow .18s;
       box-shadow: 4px 4px 0 #001059;
       -webkit-tap-highlight-color: transparent;
+      animation: cta-glow 3s ease-in-out 2s infinite;
     }
-    .cta-main:hover { background: #0f7a0b; transform: translate(-2px,-2px); box-shadow: 6px 6px 0 #001059; }
+    .cta-main:hover { background: #0f7a0b; transform: translate(-2px,-2px); box-shadow: 6px 6px 0 #001059; animation: none; }
     .cta-main:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 #001059; }
 
     .cta-wa {
@@ -117,6 +118,11 @@
       animation: blink 1.4s ease infinite;
     }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+
+    @keyframes cta-glow {
+      0%, 60%, 100% { box-shadow: 4px 4px 0 #001059; }
+      30% { box-shadow: 4px 4px 0 #001059, 0 0 0 7px rgba(21,153,16,.18), 0 0 18px rgba(21,153,16,.12); }
+    }
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(14px); }
