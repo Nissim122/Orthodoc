@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="המדרסים המפורסמים של בוריס — מדרסים אורטופדיים בעבודת יד, מוגבל ל-100 לקוחות בלבד">
+  <title>המדרסים המפורסמים של בוריס | Orthodoc</title>
+  <link rel="icon" type="image/png" href="icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      font-family: 'Assistant', sans-serif;
+      background: #f4f6fb;
+      color: #001059;
+      overflow-x: hidden;
+      padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+    }
+    @media (min-width: 768px) { body { padding-bottom: 0; } }
+    .mobile-break { display: none; }
+    @media (max-width: 767px) { .mobile-break { display: block; } }
+
+    /* ─── TYPOGRAPHY ─── */
+    .display-xl {
+      font-size: clamp(2.1rem, 9vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+    .display-lg {
+      font-size: clamp(2rem, 6vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+    .section-label {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    /* ─── BUTTONS ─── */
+    .cta-main {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      background: #159910;
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.15rem;
+      padding: 1.05rem 2.4rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background .18s, transform .18s cubic-bezier(.34,1.56,.64,1), box-shadow .18s;
+      box-shadow: 4px 4px 0 #001059;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .cta-main:hover { background: #0f7a0b; transform: translate(-2px,-2px); box-shadow: 6px 6px 0 #001059; }
+    .cta-main:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 #001059; }
+
+    .cta-wa {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      background: #fff;
+      color: #001059;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: .85rem 1.8rem;
+      border-radius: 4px;
+      border: 2px solid #001059;
+      text-decoration: none;
+      transition: background .18s, transform .18s cubic-bezier(.34,1.56,.64,1);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .cta-wa:hover { background: #f4f6fb; transform: translateY(-2px); }
+    .cta-wa:active { transform: scale(.97); }
+
+    .cta-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      color: rgba(255,255,255,.75);
+      font-weight: 600;
+      font-size: .95rem;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,.3);
+      padding-bottom: 2px;
+      transition: color .18s, border-color .18s;
+    }
+    .cta-ghost:hover { color: #fff; border-color: rgba(255,255,255,.7); }
+
+    /* ─── URGENCY CHIP ─── */
+    .urgency-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      background: #159910;
+      color: #fff;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+      padding: .35rem .9rem;
+      border-radius: 2px;
+    }
+    .urgency-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #fff;
+      animation: blink 1.4s ease infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .pain-hero-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .pain-hero-list li {
+      display: grid;
+      grid-template-columns: 2.4rem 1fr;
+      gap: 0 .75rem;
+      align-items: center;
+      padding: .85rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      opacity: 0;
+      animation: fadeUp .55s cubic-bezier(.22,1,.36,1) forwards;
+    }
+    .pain-hero-list li:first-child { border-top: 1px solid rgba(255,255,255,.08); }
+    .pain-hero-list li:nth-child(1) { animation-delay: .1s; }
+    .pain-hero-list li:nth-child(2) { animation-delay: .25s; }
+    .pain-hero-list li:nth-child(3) { animation-delay: .4s; }
+    .pain-num {
+      font-size: 1.6rem;
+      font-weight: 800;
+      line-height: 1;
+      color: #159910;
+      opacity: .45;
+      font-variant-numeric: tabular-nums;
+    }
+    .pain-text {
+      font-size: .95rem;
+      font-weight: 600;
+      color: rgba(244,246,251,.8);
+      line-height: 1.4;
+      text-align: right;
+    }
+
+    /* ─── SCARCITY TOP BAR ─── */
+    .top-bar {
+      background: #001059;
+      color: #f4f6fb;
+      font-size: .78rem;
+      font-weight: 700;
+      text-align: center;
+      padding: .5rem 1rem;
+      letter-spacing: .04em;
+    }
+
+    /* ─── NAV ─── */
+    .site-nav {
+      background: #f4f6fb;
+      border-bottom: 2px solid #001059;
+      padding: .9rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site-logo { font-weight: 800; font-size: 1.1rem; color: #001059; letter-spacing: -.02em; }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: #001059;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-texture {
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle at 70% 20%, rgba(21,153,16,.12) 0%, transparent 55%),
+                        radial-gradient(circle at 10% 80%, rgba(22,163,74,.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative; z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+      text-align: center;
+    }
+    @media (min-width: 768px) { .hero-inner { padding: 4rem 2rem 6rem; } }
+
+    .hero-portrait-wrap {
+      position: relative;
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 1.6rem;
+      border: 3px solid rgba(21,153,16,.7);
+      box-shadow: 0 0 0 6px rgba(21,153,16,.15), 0 12px 40px rgba(0,0,0,.4);
+      background: #fff;
+    }
+    .hero-portrait-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 10%;
+      display: block;
+    }
+    @media (min-width: 768px) {
+      .hero-portrait-wrap { width: 210px; height: 210px; margin-bottom: 2rem; }
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .75rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    /* ─── STATS BAR ─── */
+    .stats-bar {
+      background: #001059;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .stat-item { text-align: center; padding: 1.5rem 1rem; }
+    .stat-num { font-size: 2rem; font-weight: 800; color: #159910; line-height: 1; }
+    .stat-label { font-size: .72rem; color: rgba(255,255,255,.5); margin-top: .3rem; letter-spacing: .06em; text-transform: uppercase; }
+
+    /* ─── PAIN ─── */
+    .pain-item {
+      border-top: 1px solid rgba(0,16,89,.12);
+      padding: 1.3rem 0;
+      display: grid;
+      grid-template-columns: 1.5rem 1fr;
+      gap: 0 .9rem;
+      align-items: start;
+    }
+    .pain-item:first-child { border-top: none; }
+
+    /* ─── QUOTE BLOCK ─── */
+    .big-quote {
+      font-size: clamp(1.3rem, 4vw, 2rem);
+      font-weight: 700;
+      line-height: 1.35;
+      color: #001059;
+      position: relative;
+    }
+    .big-quote::before {
+      content: '"';
+      font-size: 5rem;
+      line-height: .5;
+      color: #159910;
+      font-family: Georgia, serif;
+      display: block;
+      margin-bottom: .5rem;
+    }
+
+    /* ─── STORY SECTION ─── */
+    .story-num {
+      font-size: 4rem;
+      font-weight: 800;
+      line-height: 1;
+      color: rgba(0,16,89,.07);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ─── TESTIMONIAL ─── */
+    .testi-card {
+      background: #fff;
+      border: 2px solid #001059;
+      border-radius: 6px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0,16,89,.1);
+    }
+    .testi-stars { color: #F59E0B; font-size: 1rem; letter-spacing: .05em; }
+    .testi-text {
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.6;
+      color: #001059;
+      margin: .9rem 0 1.2rem;
+    }
+    .testi-author-name { font-weight: 800; font-size: .9rem; }
+    .testi-author-meta { font-size: .78rem; color: #6B7280; margin-top: .15rem; }
+    .testi-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 1rem; color: #fff;
+      flex-shrink: 0;
+    }
+
+    /* ─── CAROUSEL ─── */
+    .carousel-wrap { overflow: hidden; touch-action: pan-y; }
+    .carousel-track { display: flex; transition: transform .44s cubic-bezier(.4,0,.2,1); }
+    .carousel-slide { min-width: 100%; }
+    .c-dot {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: transparent; border: none; cursor: pointer;
+      padding: 0; position: relative;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .c-dot::after {
+      content: '';
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(0,16,89,.2);
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      transition: background .2s, transform .2s;
+    }
+    .c-dot.active::after { background: #001059; transform: translate(-50%,-50%) scale(1.5); }
+    .c-arrow {
+      width: 44px; height: 44px; border-radius: 3px;
+      background: #fff; border: 2px solid #001059;
+      color: #001059; font-size: 1.3rem;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      box-shadow: 3px 3px 0 #001059;
+      transition: background .15s, transform .15s, box-shadow .15s;
+      flex-shrink: 0; -webkit-tap-highlight-color: transparent;
+    }
+    .c-arrow:hover { background: #001059; color: #fff; transform: translate(-1px,-1px); box-shadow: 4px 4px 0 #159910; }
+    .c-arrow:active { transform: translate(2px,2px); box-shadow: 1px 1px 0 #001059; }
+
+    /* ─── FINAL CTA SECTION ─── */
+    .cta-section {
+      background: #159910;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section-inner {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem;
+      text-align: center;
+      position: relative; z-index: 1;
+    }
+    .cta-section-bg {
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        -55deg,
+        transparent,
+        transparent 14px,
+        rgba(0,0,0,.04) 14px,
+        rgba(0,0,0,.04) 15px
+      );
+      pointer-events: none;
+    }
+
+    /* ─── STICKY BAR (mobile) ─── */
+    .sticky-bar {
+      position: fixed; bottom: 0; right: 0; left: 0; z-index: 100;
+      background: #001059;
+      padding: .65rem 1rem calc(.85rem + env(safe-area-inset-bottom, 0px));
+      border-top: 3px solid #159910;
+    }
+    @media (min-width: 768px) { .sticky-bar { display: none; } }
+
+    /* ─── WHATSAPP FLOAT ─── */
+    .wa-btn {
+      position: fixed;
+      bottom: calc(112px + env(safe-area-inset-bottom, 0px));
+      left: max(16px, env(safe-area-inset-left, 16px));
+      z-index: 99;
+      width: 52px; height: 52px; border-radius: 50%;
+      background: #25D366;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(37,211,102,.5);
+      transition: transform .2s cubic-bezier(.34,1.56,.64,1);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .wa-btn:hover { transform: scale(1.1); }
+    .wa-btn:active { transform: scale(.93); }
+    @media (min-width: 768px) { .wa-btn { bottom: 28px; left: 16px; } }
+
+    /* ─── MISC ─── */
+    .divider-slash {
+      height: 60px;
+      background: inherit;
+      clip-path: polygon(0 0, 100% 0, 100% 100%);
+    }
+
+    .cookie-bar {
+      position: fixed; top: 0; right: 0; left: 0; z-index: 210;
+      background: #fff; border-bottom: 2px solid #001059;
+      padding: .75rem 1.25rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,.1);
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+    }
+    .cookie-bar[hidden] { display: none; }
+    .cookie-close {
+      background: #001059; color: #fff; border: none;
+      border-radius: 3px; padding: .4rem 1.1rem; font-size: .82rem;
+      font-weight: 700; cursor: pointer; white-space: nowrap;
+    }
+
+    .legal-overlay { position: fixed; inset: 0; z-index: 300; background: rgba(0,0,0,.6); overflow-y: auto; padding: 2rem 1rem; display: flex; align-items: flex-start; justify-content: center; }
+    .legal-overlay[hidden] { display: none; }
+    .legal-box { background: #fff; border: 2px solid #001059; border-radius: 6px; width: 100%; max-width: 580px; padding: 1.75rem; margin: auto; box-shadow: 6px 6px 0 #001059; }
+    .legal-box h2 { font-size: 1.2rem; font-weight: 800; margin-bottom: 1rem; }
+    .legal-box h3 { font-size: .92rem; font-weight: 700; margin-top: 1rem; margin-bottom: .3rem; }
+    .legal-box p, .legal-box li { font-size: .82rem; color: #4B5563; line-height: 1.65; }
+    .legal-box ul { list-style: disc; padding-right: 1.2rem; }
+    .legal-box a { color: #001059; text-decoration: underline; }
+    .modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+    .modal-header h2 { margin-bottom: 0; }
+    .modal-close { width: 34px; height: 34px; border-radius: 3px; background: #F3F4F6; border: 2px solid #001059; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+
+    .skip-link { position: absolute; top: -100%; right: 0; background: #001059; color: #fff; padding: .75rem 1.5rem; font-weight: 700; z-index: 9999; text-decoration: none; }
+    .skip-link:focus { top: 0; }
+    .sr-only { position: absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+    /* ─── FORM FOCUS RINGS ─── */
+    #lead-form input:focus {
+      outline: 3px solid #001059;
+      outline-offset: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+
+<body>
+  <a href="#main" class="skip-link">דלג לתוכן הראשי</a>
+
+  <!-- COOKIE -->
+  <div id="cookie-bar" class="cookie-bar" role="region" aria-label="הודעת עוגיות">
+    <p style="flex:1;min-width:200px;font-size:.82rem;color:#4B5563">
+      האתר משתמש ב-Google Fonts.
+      <button type="button" style="color:#001059;background:none;border:none;cursor:pointer;font-size:inherit;padding:0;text-decoration:underline;font-weight:700" onclick="openModal('privacy')">מדיניות פרטיות</button>
+    </p>
+    <button type="button" class="cookie-close" onclick="acceptCookies()">הבנתי</button>
+  </div>
+
+  <!-- TOP URGENCY BAR -->
+  <div class="top-bar">
+    מספר המקומות מוגבל ל100 אבחונים בלבד- ברגע שנגמר נגמר
+  </div>
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <a href="#"><img src="icon.png" alt="אורטודוק" style="height:52px;width:auto;display:block;"></a>
+    <a href="tel:0505752688" style="font-size:.85rem;font-weight:700;color:#001059;text-decoration:none;border-bottom:2px solid #159910;padding-bottom:1px;display:inline-flex;align-items:center;gap:.3rem">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 5.94 5.94l.91-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      0505752688
+    </a>
+  </nav>
+
+  <main id="main">
+
+    <!-- ══════════════════════════
+         HERO
+    ══════════════════════════ -->
+    <section class="hero">
+      <div class="hero-texture"></div>
+      <div class="hero-inner">
+
+        <div class="hero-eyebrow">
+          <div class="urgency-chip"><span class="urgency-dot"></span> עכשיו במחיר מיוחד למצטרפים חדשים</div>
+        </div>
+
+        <div class="hero-portrait-wrap">
+          <img src="pic.png" alt="בוריס - מייסד אורטודוק">
+        </div>
+
+        <h1 class="display-xl" style="color:#f4f6fb;margin-bottom:1.2rem;">
+          המדרסים המפורסמים<br>של בוריס<br>
+          <span style="color:#159910">מבית אורטודוק</span>
+        </h1>
+
+        <p style="font-size:1.25rem;color:#fff;font-weight:700;line-height:1.5;margin-bottom:.8rem;">
+          סובלים מכאבי גב? כאבי ברכיים?<br> פלטפוס? אולפוס?
+        </p>
+
+        <p style="font-size:1rem;color:rgba(244,246,251,.7);font-weight:500;line-height:1.9;margin-bottom:1rem;">
+          המדרסים שלנו מיוצרים בהתאמה אישית<br>
+          לאחר אבחון קפדני של כל מערכות הגוף דרך כף הרגל<br>
+          <strong style="color:#fff;font-weight:800;">בשיטה ייחודית מסוגה בעולם</strong>
+        </p>
+
+
+        <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:center;">
+          <a href="https://wa.me/972505752688?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%9E%D7%A7%D7%95%D7%9D%20%D7%9C%D7%90%D7%91%D7%97%D7%95%D7%9F" class="cta-main" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.6rem;">
+            <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor"><path d="M16 0C7.163 0 0 7.163 0 16c0 2.822.736 5.472 2.027 7.774L0 32l8.418-2.004A15.93 15.93 0 0 0 16 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.28 13.28 0 0 1-6.773-1.848l-.486-.29-5.001 1.191 1.226-4.862-.317-.499A13.266 13.266 0 0 1 2.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.27-9.878c-.398-.199-2.354-1.162-2.719-1.294-.365-.133-.63-.199-.896.199-.265.398-1.028 1.294-1.26 1.56-.232.265-.464.298-.862.1-.398-.199-1.681-.619-3.202-1.977-1.183-1.057-1.982-2.362-2.214-2.76-.232-.398-.025-.613.175-.811.179-.178.398-.464.597-.696.199-.232.265-.398.398-.664.133-.265.066-.497-.033-.696-.1-.199-.896-2.16-1.228-2.958-.323-.776-.651-.671-.896-.683l-.764-.013c-.265 0-.696.1-.1061.497-.365.398-1.394 1.361-1.394 3.32 0 1.959 1.427 3.851 1.626 4.116.199.265 2.808 4.287 6.803 5.872.951.411 1.693.656 2.271.839.954.304 1.823.261 2.51.158.766-.114 2.354-.963 2.686-1.894.332-.93.332-1.727.232-1.893-.099-.165-.364-.265-.762-.464z"/></svg>
+            <span>קבעו מקום עכשיו</span>
+          </a>
+        </div>
+
+        <div style="margin-top:2rem;">
+          <p style="color:rgba(244,246,251,.35);font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;text-align:center;margin-bottom:1rem;">אם אתם חשים ב</p>
+          <ul class="pain-hero-list">
+            <li>
+              <span class="pain-num">01</span>
+              <span class="pain-text">כאבי גב תחתון חוזרים לאחר עמידה ממושכת</span>
+            </li>
+            <li>
+              <span class="pain-num">02</span>
+              <span class="pain-text">קנית מדרס שלא באמת עשה את העבודה</span>
+            </li>
+            <li>
+              <span class="pain-num">03</span>
+              <span class="pain-text">כאבים בכפות הרגליים, יובש וגירוד</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════
+         STATS
+    ══════════════════════════ -->
+    <section class="stats-bar">
+      <div style="max-width:600px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);">
+        <div class="stat-item" style="border-right:1px solid rgba(255,255,255,.08);">
+          <div class="stat-num" data-count="40" data-suffix="+">0+</div>
+          <div class="stat-label">שנות ניסיון</div>
+        </div>
+        <div class="stat-item" style="border-right:1px solid rgba(255,255,255,.08);">
+          <div class="stat-num" data-count="1200" data-suffix="+" data-format="comma">0+</div>
+          <div class="stat-label">לקוחות טופלו</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" data-count="100" data-suffix="%">0%</div>
+          <div class="stat-label">עבודת יד</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════
+         PAIN POINTS
+    ══════════════════════════ -->
+    <section style="padding:4rem 1.5rem;max-width:640px;margin:0 auto;">
+      <h2 class="display-lg" style="margin-bottom:2.5rem;text-align:center;">
+        הכאב בא לאותת לנו <span class="mobile-break"></span>הכאב הוא רק הסימפטום <br><span style="color:#159910;white-space:nowrap;font-size:clamp(1rem,4.5vw,2.5rem);">הגיע הזמן לטפל בבעיה מהשורש</span>
+      </h2>
+
+      <div>
+        <div class="pain-item">
+          <span style="font-size:1.1rem;font-weight:800;color:#159910;line-height:1.4">✓</span>
+          <div>
+            <p style="font-weight:700;font-size:1.05rem;">אבחון דינמי וממוחשב</p>
+            <p style="font-size:.9rem;color:#6B7280;margin-top:.25rem;">אנחנו לא מנחשים, אנחנו מודדים. בעזרת מכשור אורתופדי מתקדם ומערכות ממוחשבות, אנו ממפים את נקודות הלחץ המדויקות בכף הרגל שלכם בזמן עמידה ותנועה.</p>
+          </div>
+        </div>
+        <div class="pain-item">
+          <span style="font-size:1.1rem;font-weight:800;color:#159910;line-height:1.4">✓</span>
+          <div>
+            <p style="font-weight:700;font-size:1.05rem;">חומרים מתקדמים ובלימת זעזועים</p>
+            <p style="font-size:.9rem;color:#6B7280;margin-top:.25rem;">המדרסים מיוצרים מחומרי הגלם המובילים בעולם האורתופדיה, השומרים על גמישות, עמידות מקסימלית לאורך זמן ומבטיחים נוחות יוצאת דופן בכל סוג נעל.</p>
+          </div>
+        </div>
+        <div class="pain-item">
+          <span style="font-size:1.1rem;font-weight:800;color:#159910;line-height:1.4">✓</span>
+          <div>
+            <p style="font-weight:700;font-size:1.05rem;">פתרון מדויק למבנה הרגל שלך</p>
+            <p style="font-size:.9rem;color:#6B7280;margin-top:.25rem;">בניגוד למדרסי מדף, ההתאמה האישית של ORTHODOC נותנת מענה מדויק למבנה האנטומי שלך, למניעת כאבים, לתיקון היציבה ולחלוקת עומסים נכונה.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:2.5rem;padding:1.5rem;background:#001059;border-radius:4px;border-right:4px solid #159910;">
+        <p style="color:#f4f6fb;font-size:1rem;font-weight:600;line-height:1.6;">
+          הבעיה לא בכאב — הכאב הוא רק הסימפטום.<br>
+          <span style="color:rgba(244,246,251,.55);">בוריס לימד שכף הרגל מספרת כל מה שקורה בגוף. רזיאל, בנו, ממשיך לקרוא אותה.</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════
+         STORY / WHY DIFFERENT
+    ══════════════════════════ -->
+    <section style="background:#001059;padding:4.5rem 1.5rem;">
+      <div style="max-width:640px;margin:0 auto;">
+
+        <p class="section-label" style="color:rgba(244,246,251,.4);margin-bottom:1.5rem;text-align:center;">למה זה אחרת</p>
+        <h2 class="display-lg" style="color:#f4f6fb;margin-bottom:3.5rem;text-align:center;">
+          <span style="white-space:nowrap;">שיטה שפותחה ב-1983.</span><br>
+          <span style="color:#159910;white-space:nowrap;font-size:clamp(1.1rem,3.5vw,1em);">הידע שמור אצלינו ולא ניתן להעתקה</span>
+        </h2>
+
+        <div style="display:flex;flex-direction:column;gap:3rem;">
+
+          <div style="display:grid;grid-template-columns:1fr auto;gap:1.2rem;align-items:start;">
+            <div style="padding-top:.4rem;">
+              <p style="font-weight:800;font-size:1.15rem;color:#f4f6fb;margin-bottom:.5rem;">קריאה של כף הרגל</p>
+              <p style="font-size:.95rem;color:rgba(244,246,251,.55);line-height:1.65;">
+                הגוף הוא כמו ספר פתוח בשביל המאבחן שלנו.<br>כל מה שהוא צריך זה הטבעה של הרגל שלך והוא יספר לך הכל על הכאבים שלך.<br>תתכוננו להיות מופתעים.
+              </p>
+            </div>
+            <div class="story-num">01</div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr auto;gap:1.2rem;align-items:start;">
+            <div style="padding-top:.4rem;">
+              <p style="font-weight:800;font-size:1.15rem;color:#f4f6fb;margin-bottom:.5rem;">הכנת מדרס בהתאמה אישית</p>
+              <p style="font-size:.95rem;color:rgba(244,246,251,.55);line-height:1.65;">
+                אין שני מדרסים זהים. כל אחד נבנה מאפס לפי האבחון שלך. לכן 100 לקוחות בשנה — לא יותר. לא כי אנחנו לא רוצים, כי ייצור המוני הורג את הדיוק.
+              </p>
+            </div>
+            <div class="story-num">02</div>
+          </div>
+
+
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:3rem;padding:2rem 1.5rem;background:rgba(21,153,16,.08);border-radius:8px;border:2px solid rgba(21,153,16,.3);">
+        <p style="font-size:clamp(1.2rem,4vw,1.8rem);font-weight:800;color:#f4f6fb;line-height:1.5;">
+          משך הכנת המדרס בין שבוע לעשרה ימים<br>
+          <span style="color:#159910;">בעבודת יד קפדנית — <span style="border-bottom:3px solid #fff;padding-bottom:2px;">ללא מגע מכונה</span></span>
+        </p>
+      </div>
+
+    </section>
+
+    <!-- CTA NUDGE -->
+    <section style="padding:2rem 1.5rem;text-align:center;background:#f4f6fb;">
+      <a href="#cta" onclick="setTimeout(function(){document.getElementById('lead-name').focus();},400);" style="
+        display:inline-flex;align-items:center;gap:.6rem;
+        background:#159910;color:#fff;
+        font-family:'Assistant',sans-serif;font-weight:800;font-size:1.1rem;
+        padding:1.05rem 2.4rem;border-radius:4px;
+        text-decoration:none;
+        box-shadow:4px 4px 0 #001059;
+        transition:background .18s, transform .18s cubic-bezier(.34,1.56,.64,1), box-shadow .18s;
+      " onmouseover="this.style.background='#0f7a0b';this.style.transform='translate(-2px,-2px)';this.style.boxShadow='6px 6px 0 #001059'"
+         onmouseout="this.style.background='#159910';this.style.transform='';this.style.boxShadow='4px 4px 0 #001059'">
+        רוצה לקבוע תור? השאר פרטים ←
+      </a>
+    </section>
+
+    <!-- ══════════════════════════
+         TESTIMONIALS
+    ══════════════════════════ -->
+    <section style="padding:4.5rem 1.5rem;" role="region" aria-label="ביקורות לקוחות">
+      <div style="max-width:640px;margin:0 auto;">
+
+        <p class="section-label" style="color:#159910;margin-bottom:1rem;text-align:center;">ביקורות מהשטח</p>
+        <h2 class="display-lg" style="margin-bottom:.5rem;text-align:center;">
+          מה קרה<br>אחרי שהגיעו.
+        </h2>
+        <p style="font-size:.9rem;color:#6B7280;margin-bottom:2.5rem;text-align:center;">ביקורות ישירות מ-Google</p>
+
+        <!-- Carousel -->
+        <div class="carousel-wrap">
+          <div class="carousel-track" id="track">
+
+            <div class="carousel-slide">
+              <div class="testi-card">
+                <div class="testi-stars">★★★★★</div>
+                <p class="testi-text">"תוצאות מדהימות כבר מהחודש הראשון. צוות מקצועי, יחס חם ואישי. ממליץ בחום."</p>
+                <div style="display:flex;align-items:center;gap:.75rem;">
+                  <div class="testi-avatar" style="background:linear-gradient(135deg,#e53e3e,#c53030);">י</div>
+                  <div>
+                    <p class="testi-author-name">יצחק אלמסי</p>
+                    <p class="testi-author-meta">לפני שנתיים · Google</p>
+                  </div>
+                  <svg style="margin-right:auto" width="20" height="20" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-slide">
+              <div class="testi-card">
+                <div class="testi-stars">★★★★★</div>
+                <p class="testi-text">"יש לי שתי פריצות דיסק גב תחתון (4-5). לפני כן לא יכלתי לזוז בזמן התקפות הכאב. הגעתי לאורטודוק, עשו לי מדרסים — ואני מרגיש שיפור משמעותי."</p>
+                <div style="display:flex;align-items:center;gap:.75rem;">
+                  <div class="testi-avatar" style="background:linear-gradient(135deg,#38a169,#276749);">נ</div>
+                  <div>
+                    <p class="testi-author-name">נתן לום</p>
+                    <p class="testi-author-meta">לפני שנתיים · Google</p>
+                  </div>
+                  <svg style="margin-right:auto" width="20" height="20" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-slide">
+              <div class="testi-card">
+                <div class="testi-stars">★★★★★</div>
+                <p class="testi-text">"שירות מצוין, מהירים, נוחים — ועם אחריות. הסבלנות ללקוח היא הדבר הכי חשוב, ובאורטודוק תמצאו בדיוק את זה."</p>
+                <div style="display:flex;align-items:center;gap:.75rem;">
+                  <div class="testi-avatar" style="background:linear-gradient(135deg,#667eea,#764ba2);">I</div>
+                  <div>
+                    <p class="testi-author-name">Itschak Rave</p>
+                    <p class="testi-author-meta">לפני שנה · Google</p>
+                  </div>
+                  <svg style="margin-right:auto" width="20" height="20" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:1.2rem;">
+          <button type="button" class="c-arrow" id="prev" aria-label="ביקורת הקודמת">‹</button>
+          <div style="display:flex;gap:.5rem;align-items:center;">
+            <button type="button" class="c-dot active" data-idx="0" aria-label="ביקורת 1" aria-current="true"></button>
+            <button type="button" class="c-dot" data-idx="1" aria-label="ביקורת 2" aria-current="false"></button>
+            <button type="button" class="c-dot" data-idx="2" aria-label="ביקורת 3" aria-current="false"></button>
+          </div>
+          <button type="button" class="c-arrow" id="next" aria-label="ביקורת הבאה">›</button>
+        </div>
+        <div id="carousel-status" class="sr-only" aria-live="polite">ביקורת 1 מתוך 3</div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════
+         FINAL CTA
+    ══════════════════════════ -->
+    <section id="cta" class="cta-section">
+      <div class="cta-section-bg"></div>
+      <div class="cta-section-inner">
+
+        <p class="section-label" style="color:rgba(255,255,255,.6);margin-bottom:1.2rem;"><span id="spots-cta">13</span> מקומות · אחרי זה נגמר</p>
+
+        <h2 class="display-lg" style="color:#fff;margin-bottom:1rem;">
+          אל תחכה<br>לכאב הבא.
+        </h2>
+
+        <p style="font-size:1rem;color:rgba(255,255,255,.8);margin-bottom:2.5rem;line-height:1.6;">
+          כל מקום שמתפנה נלקח תוך שעות.<br>
+          <strong>ייעוץ ראשוני ללא עלות.</strong> בדוק אם אנחנו יכולים לעזור לך.
+        </p>
+
+        <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;max-width:340px;margin:0 auto;">
+          <form id="lead-form" style="width:100%;display:flex;flex-direction:column;gap:.75rem;" onsubmit="handleLeadForm(event)">
+            <input type="text" id="lead-name" placeholder="שם מלא" required autocomplete="name" style="
+              width:100%;padding:1rem 1.2rem;
+              border-radius:4px;border:none;
+              font-family:'Assistant',sans-serif;font-size:1rem;font-weight:600;
+              color:#001059;background:#fff;
+              box-shadow:4px 4px 0 rgba(0,0,0,.2);
+              text-align:right;
+            ">
+            <input type="tel" id="lead-phone" placeholder="טלפון" required autocomplete="tel" pattern="0[0-9]{8,9}" title="מספר טלפון ישראלי" style="
+              width:100%;padding:1rem 1.2rem;
+              border-radius:4px;border:none;
+              font-family:'Assistant',sans-serif;font-size:1rem;font-weight:600;
+              color:#001059;background:#fff;
+              box-shadow:4px 4px 0 rgba(0,0,0,.2);
+              text-align:right;
+            ">
+            <button type="submit" style="
+              width:100%;padding:1.1rem;
+              background:#fff;color:#001059;
+              font-family:'Assistant',sans-serif;font-weight:800;font-size:1.1rem;
+              border:none;border-radius:4px;cursor:pointer;
+              box-shadow:5px 5px 0 rgba(0,0,0,.25);
+              transition:transform .15s, box-shadow .15s;
+            " onmouseover="this.style.transform='translate(-2px,-2px)';this.style.boxShadow='7px 7px 0 rgba(0,0,0,.25)'"
+               onmouseout="this.style.transform='';this.style.boxShadow='5px 5px 0 rgba(0,0,0,.25)'">
+              קבע מקום עכשיו
+            </button>
+            <div id="lead-success" hidden style="
+              width:100%;padding:1rem 1.2rem;
+              background:rgba(255,255,255,.15);
+              border:2px solid rgba(255,255,255,.6);
+              border-radius:4px;text-align:center;
+              color:#fff;font-weight:700;font-size:1rem;line-height:1.5;
+            " role="alert">
+              ✅ פרטיך התקבלו! נחזור אליך בהקדם.
+            </div>
+          </form>
+
+          <a href="https://wa.me/972505752688?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%9E%D7%A7%D7%95%D7%9D" target="_blank" rel="noopener" style="
+            display:block;width:100%;text-align:center;
+            background:transparent;color:#fff;
+            font-weight:700;font-size:1rem;
+            padding:.9rem 2rem;
+            border-radius:4px;
+            border:2px solid rgba(255,255,255,.5);
+            text-decoration:none;
+            transition:border-color .15s, background .15s;
+          " onmouseover="this.style.borderColor='#fff';this.style.background='rgba(255,255,255,.08)'"
+             onmouseout="this.style.borderColor='rgba(255,255,255,.5)';this.style.background='transparent'">
+            💬 שלח הודעה בוואטסאפ
+          </a>
+        </div>
+
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer style="background:#001059;padding:2.5rem 1.5rem;border-top:1px solid rgba(255,255,255,.08);">
+    <div style="max-width:640px;margin:0 auto;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1.5rem;margin-bottom:2rem;">
+        <div>
+          <p style="color:#f4f6fb;font-weight:800;font-size:1.1rem;margin-bottom:.4rem;">Orthodoc — אורטודוק</p>
+          <p style="color:rgba(255,255,255,.4);font-size:.85rem;">בצלאל 12, רמת גן</p>
+          <p style="color:rgba(255,255,255,.4);font-size:.85rem;margin-top:.2rem;">050-5752688</p>
+        </div>
+        <a href="https://www.facebook.com/Orthodoc" target="_blank" rel="noopener" style="color:rgba(255,255,255,.35);font-size:.82rem;text-decoration:underline;">Facebook</a>
+      </div>
+      <p style="font-size:.75rem;color:rgba(255,255,255,.22);line-height:1.65;margin-bottom:1rem;">
+        המידע באתר זה נועד לצורכי מידע כללי בלבד ואינו מהווה עצה רפואית, אבחנה או טיפול.
+      </p>
+      <div style="display:flex;gap:1.5rem;flex-wrap:wrap;">
+        <button type="button" onclick="openModal('privacy')" style="background:none;border:none;cursor:pointer;color:rgba(255,255,255,.3);font-size:.78rem;text-decoration:underline;padding:0;">מדיניות פרטיות</button>
+        <button type="button" onclick="openModal('accessibility')" style="background:none;border:none;cursor:pointer;color:rgba(255,255,255,.3);font-size:.78rem;text-decoration:underline;padding:0;">הצהרת נגישות</button>
+      </div>
+      <p style="font-size:.72rem;color:rgba(255,255,255,.15);margin-top:1rem;">© 2026 Orthodoc. כל הזכויות שמורות.</p>
+    </div>
+  </footer>
+
+  <!-- STICKY BAR (mobile) -->
+  <div class="sticky-bar">
+    <p style="text-align:center;font-size:.72rem;font-weight:700;color:rgba(255,255,255,.7);margin-bottom:.5rem;letter-spacing:.04em;">
+      <span id="spots-sticky">13</span> מקומות נותרו — ההרשמה נסגרת בקרוב
+    </p>
+    <a href="tel:0505752688" style="
+      display:flex;align-items:center;justify-content:center;gap:.5rem;
+      width:100%;text-align:center;
+      background:#159910;color:#fff;
+      font-weight:800;font-size:1.05rem;
+      padding:.9rem;border-radius:4px;
+      box-shadow:3px 3px 0 rgba(0,0,0,.3);
+      text-decoration:none;
+    ">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 5.94 5.94l.91-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      קבע מקום — 0505752688
+    </a>
+  </div>
+
+  <!-- WHATSAPP FLOAT -->
+  <a href="https://wa.me/972505752688?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%9E%D7%A7%D7%95%D7%9D" class="wa-btn" aria-label="פתח WhatsApp" target="_blank" rel="noopener">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <!-- MODALS -->
+  <div id="modal-privacy" class="legal-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="privacy-title">
+    <div class="legal-box">
+      <div class="modal-header">
+        <h2 id="privacy-title">מדיניות פרטיות</h2>
+        <button type="button" class="modal-close" onclick="closeModal('privacy')" aria-label="סגור">✕</button>
+      </div>
+      <p><strong>עדכון אחרון:</strong> מאי 2026</p>
+      <p>אורטודוק מחויבת לשמירה על פרטיות המשתמשים בהתאם לחוק הגנת הפרטיות, תשמ"א-1981.</p>
+      <h3>מידע הנאסף</h3>
+      <p>אתר זה <strong>אינו אוסף פרטים אישיים</strong> ישירות. יצירת קשר דרך טלפון או WhatsApp כרוכה בעיבוד מידע על-ידי ספקי השירות.</p>
+      <h3>שירותי צד שלישי</h3>
+      <p>האתר משתמש ב-<strong>Google Fonts</strong> בהתאם ל<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">מדיניות הפרטיות של Google</a>. אין שימוש בקודי מעקב או מערכות אנליטיקה.</p>
+      <h3>יצירת קשר</h3>
+      <p><a href="mailto:orthodocbiz@gmail.com">orthodocbiz@gmail.com</a> | <a href="tel:0505752688">0505752688</a></p>
+    </div>
+  </div>
+
+  <div id="modal-accessibility" class="legal-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="access-title">
+    <div class="legal-box">
+      <div class="modal-header">
+        <h2 id="access-title">הצהרת נגישות</h2>
+        <button type="button" class="modal-close" onclick="closeModal('accessibility')" aria-label="סגור">✕</button>
+      </div>
+      <p><strong>עדכון אחרון:</strong> מאי 2026</p>
+      <p>אורטודוק מחויבת לנגישות דיגיטלית בהתאם לתקנות שוויון זכויות לאנשים עם מוגבלות, תשע"ג-2013.</p>
+      <h3>רמת הנגישות</h3>
+      <p>האתר עומד ברמת AA של תקן WCAG 2.1: ניווט מקלדת, תמיכה בקוראי מסך, ניגודיות תקנית, כותרות היררכיות.</p>
+      <h3>פנייה בנושא נגישות</h3>
+      <p>נתקלתם בבעיה? נטפל תוך 5 ימי עסקים: <a href="mailto:orthodocbiz@gmail.com">orthodocbiz@gmail.com</a></p>
+    </div>
+  </div>
+
+  <script>
+    // Carousel
+    const track = document.getElementById('track');
+    const dots = document.querySelectorAll('.c-dot');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const statusEl = document.getElementById('carousel-status');
+    let current = 0, timer;
+    const paused = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+    function goTo(idx) {
+      current = (idx + slides.length) % slides.length;
+      track.style.transform = `translateX(${current * 100}%)`;
+      dots.forEach((d, i) => {
+        d.classList.toggle('active', i === current);
+        d.setAttribute('aria-current', i === current ? 'true' : 'false');
+      });
+      statusEl.textContent = `ביקורת ${current + 1} מתוך ${slides.length}`;
+    }
+
+    function resetTimer() {
+      clearInterval(timer);
+      if (!paused) timer = setInterval(() => goTo(current + 1), 4500);
+    }
+
+    document.getElementById('next').addEventListener('click', () => { goTo(current + 1); resetTimer(); });
+    document.getElementById('prev').addEventListener('click', () => { goTo(current - 1); resetTimer(); });
+    dots.forEach(d => d.addEventListener('click', () => { goTo(+d.dataset.idx); resetTimer(); }));
+
+    const wrap = document.querySelector('.carousel-wrap');
+    let tx0 = 0;
+    wrap.addEventListener('touchstart', e => { tx0 = e.changedTouches[0].clientX; }, { passive: true });
+    wrap.addEventListener('touchend', e => {
+      const diff = tx0 - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 44) { diff > 0 ? goTo(current + 1) : goTo(current - 1); resetTimer(); }
+    }, { passive: true });
+    resetTimer();
+
+    // Cookie
+    (function() {
+      const bar = document.getElementById('cookie-bar');
+      if (localStorage.getItem('ck_ok')) { bar.hidden = true; }
+      else { document.body.style.paddingTop = bar.offsetHeight + 'px'; }
+    })();
+    function acceptCookies() {
+      document.getElementById('cookie-bar').hidden = true;
+      document.body.style.paddingTop = '';
+      localStorage.setItem('ck_ok', '1');
+    }
+
+    // Modals
+    let _lastFocus = null;
+    function openModal(id) {
+      _lastFocus = document.activeElement;
+      const m = document.getElementById('modal-' + id);
+      m.hidden = false;
+      document.body.style.overflow = 'hidden';
+      const first = m.querySelector('button,a,[tabindex]');
+      if (first) first.focus();
+      m.addEventListener('click', e => { if (e.target === m) closeModal(id); }, { once: true });
+    }
+    function closeModal(id) {
+      const m = document.getElementById('modal-' + id);
+      m.hidden = true;
+      document.body.style.overflow = '';
+      if (_lastFocus) _lastFocus.focus();
+    }
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        ['privacy', 'accessibility'].forEach(id => {
+          const m = document.getElementById('modal-' + id);
+          if (!m.hidden) closeModal(id);
+        });
+      }
+    });
+
+    // Hide sticky bar when CTA section is visible
+    const ctaEl = document.getElementById('cta');
+    const stickyBar = document.querySelector('.sticky-bar');
+    const stickyLink = stickyBar.querySelector('a');
+    const io = new IntersectionObserver(entries => {
+      const h = entries[0].isIntersecting;
+      stickyBar.style.opacity = h ? '0' : '1';
+      stickyBar.style.pointerEvents = h ? 'none' : 'auto';
+      stickyBar.setAttribute('aria-hidden', h ? 'true' : 'false');
+      stickyLink.tabIndex = h ? -1 : 0;
+    }, { threshold: 0.2 });
+    io.observe(ctaEl);
+
+    // Stats counter animation
+    (function() {
+      const counters = document.querySelectorAll('.stat-num[data-count]');
+      if (!counters.length) return;
+      const reduced = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+      function animateCounter(el) {
+        const target = parseInt(el.dataset.count, 10);
+        const suffix = el.dataset.suffix || '';
+        const comma = el.dataset.format === 'comma';
+        if (reduced) {
+          el.textContent = (comma ? target.toLocaleString('he-IL') : target) + suffix;
+          return;
+        }
+        const duration = 1800;
+        const start = performance.now();
+        function fmt(n) { return comma ? n.toLocaleString('he-IL') : n; }
+        function step(now) {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const ease = 1 - Math.pow(1 - progress, 3);
+          const value = Math.round(ease * target);
+          el.textContent = fmt(value) + suffix;
+          if (progress < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+
+      const statsBar = document.querySelector('.stats-bar');
+      const observer = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting) {
+          counters.forEach(animateCounter);
+          observer.disconnect();
+        }
+      }, { threshold: 0.3 });
+      observer.observe(statsBar);
+    })();
+
+    // Spots countdown
+    (function() {
+      const START = 13, MIN = 3, INTERVAL_MS = 8 * 60 * 60 * 1000;
+      const now = Date.now();
+      let spots = parseInt(localStorage.getItem('spots_count') || START, 10);
+      let lastTick = parseInt(localStorage.getItem('spots_tick') || now, 10);
+
+      const elapsed = Math.floor((now - lastTick) / INTERVAL_MS);
+      if (elapsed > 0) {
+        spots = Math.max(MIN, spots - elapsed);
+        localStorage.setItem('spots_count', spots);
+        localStorage.setItem('spots_tick', lastTick + elapsed * INTERVAL_MS);
+      } else if (!localStorage.getItem('spots_tick')) {
+        localStorage.setItem('spots_count', START);
+        localStorage.setItem('spots_tick', now);
+      }
+
+      ['spots-topbar', 'spots-hero', 'spots-cta', 'spots-sticky'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = spots;
+      });
+    })();
+  </script>
+
+  <script>
+    function handleLeadForm(e) {
+      e.preventDefault();
+      var name = document.getElementById('lead-name').value.trim();
+      var phone = document.getElementById('lead-phone').value.trim();
+      var form = e.target;
+      var btn = form.querySelector('button[type="submit"]');
+      var successMsg = document.getElementById('lead-success');
+      btn.disabled = true;
+      btn.textContent = 'שולח...';
+
+      fetch('https://hook.eu2.make.com/9mrrtzy71z45uv45fngyqq685qtfe5tp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name, phone: phone })
+      })
+      .then(function() {
+        form.reset();
+        form.style.display = 'none';
+        successMsg.hidden = false;
+        successMsg.focus();
+      })
+      .catch(function() {
+        btn.disabled = false;
+        btn.textContent = 'קבע מקום עכשיו';
+        var errEl = form.querySelector('.lead-err');
+        if (!errEl) {
+          errEl = document.createElement('p');
+          errEl.className = 'lead-err';
+          errEl.style.cssText = 'color:#fff;font-size:.85rem;font-weight:700;text-align:center;margin:0;';
+          errEl.setAttribute('role', 'alert');
+          form.appendChild(errEl);
+        }
+        errEl.textContent = 'שגיאה בשליחה — נסה שוב או שלח בוואטסאפ';
+      });
+    }
+  </script>
+
+</body>
+</html>
