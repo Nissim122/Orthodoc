@@ -226,6 +226,11 @@
       object-fit: cover;
       object-position: center 10%;
       display: block;
+      opacity: 0;
+      transition: opacity .35s ease;
+    }
+    .hero-portrait-wrap img.img-loaded {
+      opacity: 1;
     }
     @media (min-width: 768px) {
       .hero-portrait-wrap { width: 210px; height: 210px; margin-bottom: 2rem; }
@@ -946,6 +951,14 @@
       document.body.style.paddingTop = '';
       localStorage.setItem('ck_ok', '1');
     }
+
+    // Fade in hero portrait once loaded
+    (function() {
+      const img = document.querySelector('.hero-portrait-wrap img');
+      if (!img) return;
+      if (img.complete && img.naturalWidth) { img.classList.add('img-loaded'); return; }
+      img.addEventListener('load', function() { img.classList.add('img-loaded'); });
+    })();
 
     // Sync main padding-top with actual sticky header height
     (function() {
