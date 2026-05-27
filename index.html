@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="he" dir="rtl" >
 <head>
   <meta charset="UTF-8">
@@ -138,7 +138,7 @@
       grid-template-columns: 2.4rem 1fr;
       gap: 0 .75rem;
       align-items: center;
-      padding: .85rem 0;
+      padding: .45rem 0;
       border-bottom: 1px solid rgba(255,255,255,.08);
       opacity: 0;
       animation: fadeUp .55s cubic-bezier(.22,1,.36,1) forwards;
@@ -147,18 +147,21 @@
     .pain-hero-list li:nth-child(1) { animation-delay: .1s; }
     .pain-hero-list li:nth-child(2) { animation-delay: .25s; }
     .pain-hero-list li:nth-child(3) { animation-delay: .4s; }
+    .pain-hero-list li:nth-child(4) { animation-delay: .55s; }
+    .pain-hero-list li:nth-child(5) { animation-delay: .7s; }
+    .pain-hero-list li:nth-child(6) { animation-delay: .85s; }
     .pain-num {
       font-size: 1.6rem;
       font-weight: 800;
       line-height: 1;
       color: #159910;
-      opacity: .45;
+      opacity: .85;
       font-variant-numeric: tabular-nums;
     }
     .pain-text {
-      font-size: .95rem;
-      font-weight: 600;
-      color: rgba(244,246,251,.8);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #ffffff;
       line-height: 1.4;
       text-align: right;
     }
@@ -215,6 +218,13 @@
     }
     @media (min-width: 768px) { .hero-inner { padding: 4rem 2rem 6rem; } }
 
+    @keyframes portrait-fall {
+      0%   { transform: translateY(-320px); opacity: 0; }
+      50%  { opacity: 1; }
+      65%  { transform: translateY(14px); }
+      82%  { transform: translateY(-6px); }
+      100% { transform: translateY(0); opacity: 1; }
+    }
     .hero-portrait-wrap {
       position: relative;
       width: 170px;
@@ -225,6 +235,11 @@
       border: 3px solid rgba(21,153,16,.7);
       box-shadow: 0 0 0 6px rgba(21,153,16,.15), 0 12px 40px rgba(0,0,0,.4);
       background: #fff;
+      transform: translateY(-320px);
+      opacity: 0;
+    }
+    .hero-portrait-wrap.portrait-ready {
+      animation: portrait-fall .75s cubic-bezier(.34,1.56,.64,1) forwards;
     }
     .hero-portrait-wrap img {
       width: 100%;
@@ -232,12 +247,9 @@
       object-fit: cover;
       object-position: center 10%;
       display: block;
-      opacity: 0;
-      transition: opacity .35s ease;
-    }
-    .hero-portrait-wrap img.img-loaded {
       opacity: 1;
     }
+    .hero-portrait-wrap img.img-loaded { opacity: 1; }
     @media (min-width: 768px) {
       .hero-portrait-wrap { width: 210px; height: 210px; margin-bottom: 2rem; }
     }
@@ -254,7 +266,6 @@
     /* ─── STATS BAR ─── */
     .stats-bar {
       background: #001059;
-      border-top: 1px solid rgba(255,255,255,.08);
     }
     .stat-item { text-align: center; padding: 1.5rem 1rem; }
     .stat-num { font-size: 2rem; font-weight: 800; color: #159910; line-height: 1; }
@@ -445,10 +456,40 @@
     .sr-only { position: absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 
     /* ─── FORM FOCUS RINGS ─── */
-    #lead-form input:focus {
+    #lead-form input:focus,
+    .lead-form-inline input:focus {
       outline: 3px solid #001059;
       outline-offset: 2px;
     }
+
+    /* ─── INLINE FORM ─── */
+    .lead-form-inline {
+      width: 100%;
+      max-width: 340px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+    .lead-form-inline input {
+      width: 100%; padding: 1rem 1.2rem;
+      border-radius: 4px; border: none;
+      font-family: 'Assistant', sans-serif; font-size: 1rem; font-weight: 600;
+      color: #001059; background: #fff;
+      box-shadow: 4px 4px 0 rgba(0,0,0,.2);
+      text-align: right;
+    }
+    .lf-btn {
+      width: 100%; padding: 1.1rem;
+      font-family: 'Assistant', sans-serif; font-weight: 800; font-size: 1.1rem;
+      border: none; border-radius: 4px; cursor: pointer;
+      box-shadow: 5px 5px 0 rgba(0,0,0,.25);
+      transition: transform .15s, box-shadow .15s;
+    }
+    .lf-btn:hover { transform: translate(-2px,-2px); box-shadow: 7px 7px 0 rgba(0,0,0,.25); }
+    .lf-btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 rgba(0,0,0,.25); }
+    .lf-btn-green { background: #159910; color: #fff; }
+    .lf-btn-white { background: #fff; color: #001059; }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important; }
@@ -521,12 +562,14 @@
         </p>
 
 
-        <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:center;">
-          <a href="https://wa.me/972505752688?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%93%D7%A3%20%D7%A9%D7%9C%D7%9B%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%A9%D7%99%D7%97%D7%94%20%D7%9C%D7%99%D7%99%D7%A2%D7%95%D7%A5%20%D7%9E%D7%A7%D7%A6%D7%95%D7%A2%D7%99" class="cta-main" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.6rem;">
-            <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor"><path d="M16 0C7.163 0 0 7.163 0 16c0 2.822.736 5.472 2.027 7.774L0 32l8.418-2.004A15.93 15.93 0 0 0 16 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.28 13.28 0 0 1-6.773-1.848l-.486-.29-5.001 1.191 1.226-4.862-.317-.499A13.266 13.266 0 0 1 2.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.27-9.878c-.398-.199-2.354-1.162-2.719-1.294-.365-.133-.63-.199-.896.199-.265.398-1.028 1.294-1.26 1.56-.232.265-.464.298-.862.1-.398-.199-1.681-.619-3.202-1.977-1.183-1.057-1.982-2.362-2.214-2.76-.232-.398-.025-.613.175-.811.179-.178.398-.464.597-.696.199-.232.265-.398.398-.664.133-.265.066-.497-.033-.696-.1-.199-.896-2.16-1.228-2.958-.323-.776-.651-.671-.896-.683l-.764-.013c-.265 0-.696.1-.1061.497-.365.398-1.394 1.361-1.394 3.32 0 1.959 1.427 3.851 1.626 4.116.199.265 2.808 4.287 6.803 5.872.951.411 1.693.656 2.271.839.954.304 1.823.261 2.51.158.766-.114 2.354-.963 2.686-1.894.332-.93.332-1.727.232-1.893-.099-.165-.364-.265-.762-.464z"/></svg>
-            <span>קבעו מקום עכשיו</span>
-          </a>
-        </div>
+        <form class="lead-form-inline" onsubmit="handleLeadFormInline(event)">
+          <input type="text" class="lf-name" placeholder="שם מלא" required autocomplete="name">
+          <input type="tel" class="lf-phone" placeholder="טלפון" required autocomplete="tel" pattern="0[0-9]{8,9}" title="מספר טלפון ישראלי">
+          <button type="submit" class="lf-btn lf-btn-green" style="animation:cta-glow 2.4s ease-in-out infinite;">קבע תור עכשיו</button>
+          <div class="lf-success" hidden style="padding:1rem 1.2rem;background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.6);border-radius:4px;text-align:center;color:#fff;font-weight:700;font-size:1rem;line-height:1.5;" role="alert">
+            ✅ פרטיך התקבלו! נחזור אליך בהקדם.
+          </div>
+        </form>
 
         <div style="margin-top:2rem;">
           <p style="color:rgba(244,246,251,.35);font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;text-align:center;margin-bottom:1rem;">אם אתם חשים ב</p>
@@ -543,6 +586,18 @@
               <span class="pain-num">03</span>
               <span class="pain-text">כאבים בכפות הרגליים, יובש וגירוד</span>
             </li>
+            <li>
+              <span class="pain-num">04</span>
+              <span class="pain-text">כאבי ברכיים וירכיים בהליכה יומיומית</span>
+            </li>
+            <li>
+              <span class="pain-num">05</span>
+              <span class="pain-text">נפיחות וכבדות ברגליים בסוף יום עבודה</span>
+            </li>
+            <li>
+              <span class="pain-num">06</span>
+              <span class="pain-text">כאבי צוואר וגב עליון הנגרמים מיציבה לקויה</span>
+            </li>
           </ul>
         </div>
 
@@ -554,11 +609,11 @@
     ══════════════════════════ -->
     <section class="stats-bar">
       <div style="max-width:600px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);">
-        <div class="stat-item" style="border-right:1px solid rgba(255,255,255,.08);">
+        <div class="stat-item" style="">
           <div class="stat-num" data-count="40" data-suffix="+">0+</div>
           <div class="stat-label">שנות ניסיון</div>
         </div>
-        <div class="stat-item" style="border-right:1px solid rgba(255,255,255,.08);">
+        <div class="stat-item" style="">
           <div class="stat-num" data-count="1200" data-suffix="+" data-format="comma">0+</div>
           <div class="stat-label">לקוחות טופלו</div>
         </div>
@@ -568,6 +623,12 @@
         </div>
       </div>
     </section>
+    <!-- wave divider stats→pain -->
+    <div style="background:#001059;line-height:0;display:block;margin-bottom:-2px;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 56" preserveAspectRatio="none" style="display:block;width:100%;height:56px;">
+        <path d="M0,28 C180,56 360,0 540,28 C720,56 900,0 1080,28 C1260,56 1380,14 1440,28 L1440,56 L0,56 Z" fill="#f4f6fb"/>
+      </svg>
+    </div>
 
     <!-- ══════════════════════════
          PAIN POINTS
@@ -607,6 +668,20 @@
           במקביל להבנה טכנולוגית —<br>
           <span style="color:#7ecb7e;font-weight:700;font-style:normal;">אך מבינים שאין תחליף לעבודת יד</span>
         </p>
+      </div>
+
+      <div style="margin-top:2.5rem;text-align:center;">
+        <p style="font-size:1.1rem;font-weight:700;color:#001059;margin-bottom:1.5rem;">
+          רוצים לקבוע? השאירו פרטים ונחזור אליכם
+        </p>
+        <form class="lead-form-inline" onsubmit="handleLeadFormInline(event)">
+          <input type="text" class="lf-name" placeholder="שם מלא" required autocomplete="name">
+          <input type="tel" class="lf-phone" placeholder="טלפון" required autocomplete="tel" pattern="0[0-9]{8,9}" title="מספר טלפון ישראלי">
+          <button type="submit" class="lf-btn lf-btn-green">קבע תור עכשיו ←</button>
+          <div class="lf-success" hidden style="padding:1rem 1.2rem;background:#e8f5e9;border:2px solid #159910;border-radius:4px;text-align:center;color:#001059;font-weight:700;font-size:1rem;line-height:1.5;" role="alert">
+            ✅ פרטיך התקבלו! נחזור אליך בהקדם.
+          </div>
+        </form>
       </div>
     </section>
 
@@ -657,21 +732,6 @@
 
     </section>
 
-    <!-- CTA NUDGE -->
-    <section style="padding:2rem 1.5rem;text-align:center;background:#f4f6fb;">
-      <a href="#cta" onclick="setTimeout(function(){document.getElementById('lead-name').focus();},400);" style="
-        display:inline-flex;align-items:center;gap:.6rem;
-        background:#159910;color:#fff;
-        font-family:'Assistant',sans-serif;font-weight:800;font-size:1.1rem;
-        padding:1.05rem 2.4rem;border-radius:4px;
-        text-decoration:none;
-        box-shadow:4px 4px 0 #001059;
-        transition:background .18s, transform .18s cubic-bezier(.34,1.56,.64,1), box-shadow .18s;
-      " onmouseover="this.style.background='#0f7a0b';this.style.transform='translate(-2px,-2px)';this.style.boxShadow='6px 6px 0 #001059'"
-         onmouseout="this.style.background='#159910';this.style.transform='';this.style.boxShadow='4px 4px 0 #001059'">
-        רוצה לקבוע תור? השאר פרטים ←
-      </a>
-    </section>
 
     <!-- ══════════════════════════
          TESTIMONIALS
@@ -681,9 +741,12 @@
 
         <p class="section-label" style="color:#159910;margin-bottom:1rem;text-align:center;">ביקורות מהשטח</p>
         <h2 class="display-lg" style="margin-bottom:.5rem;text-align:center;">
-          מה קרה<br>אחרי שהגיעו.
+          מה הלקוחות לנו מספרים
         </h2>
-        <p style="font-size:.9rem;color:#6B7280;margin-bottom:2.5rem;text-align:center;">ביקורות ישירות מ-Google</p>
+        <p style="font-size:.9rem;color:#6B7280;margin-bottom:2.5rem;text-align:center;">
+          <span style="color:#F59E0B;letter-spacing:.05em;">★★★★★</span>
+          &nbsp;ביקורות ישירות מ-Google
+        </p>
 
         <!-- Carousel -->
         <div class="carousel-wrap">
@@ -692,12 +755,12 @@
             <div class="carousel-slide">
               <div class="testi-card">
                 <div class="testi-stars">★★★★★</div>
-                <p class="testi-text">"תוצאות מדהימות כבר מהחודש הראשון. צוות מקצועי, יחס חם ואישי. ממליץ בחום."</p>
+                <p class="testi-text">"אחרי שבר בקרסול הייתי בטוח שהצליעה איתי לנצח. גם אחרי הפיזיותרפיה משהו בהליכה פשוט לא התסדר. אחרי שקיבלתי את המדרסים בביקור הראשון הבנתי שהם פותרים את שורש הבעיה. הם איזנו לי את הצעד, והחזירו לי יציבה נכונה, ובתוך כמה שבועות ההליכה שלי נראתה טבעית כמו פעם. היום אני מתפקד בלי פחד, בלי כאבים ובלי חוסר יציבות!"</p>
                 <div style="display:flex;align-items:center;gap:.75rem;">
-                  <div class="testi-avatar" style="background:linear-gradient(135deg,#e53e3e,#c53030);">י</div>
+                  <div class="testi-avatar" style="background:linear-gradient(135deg,#e53e3e,#c53030);">נ</div>
                   <div>
-                    <p class="testi-author-name">יצחק אלמסי</p>
-                    <p class="testi-author-meta">לפני שנתיים · Google</p>
+                    <p class="testi-author-name">נועה שלום</p>
+                    <p class="testi-author-meta">רמת גן · Google</p>
                   </div>
                   <svg style="margin-right:auto" width="20" height="20" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
                 </div>
@@ -707,12 +770,12 @@
             <div class="carousel-slide">
               <div class="testi-card">
                 <div class="testi-stars">★★★★★</div>
-                <p class="testi-text">"יש לי שתי פריצות דיסק גב תחתון (4-5). לפני כן לא יכלתי לזוז בזמן התקפות הכאב. הגעתי לאורטודוק, עשו לי מדרסים — ואני מרגיש שיפור משמעותי."</p>
+                <p class="testi-text">"אחרי הלידה הראשונה שלי הרגשתי שהגוף שלי התפרק. כאבי גב בלתי נסבלים, ברכיים שנפצפסות באמצע היום ותחושה שאני מאבדת יציבות בכל צעד. הגעתי לאבחון וקיבלתי מדרסים מותאמים — ושם התחיל השינוי. תוך שבועיים הרגשתי הקלה, ובמהלך החודשים הבאים הצעידה שלי הפכה טבעית יותר. היום אני עולה במדרגות, נושאת את התינוק בלי כאבים ומרגישה שקיבלתי את הגוף שלי בחזרה. תודה רבה לאורטודוק!"</p>
                 <div style="display:flex;align-items:center;gap:.75rem;">
-                  <div class="testi-avatar" style="background:linear-gradient(135deg,#38a169,#276749);">נ</div>
+                  <div class="testi-avatar" style="background:linear-gradient(135deg,#38a169,#276749);">ל</div>
                   <div>
-                    <p class="testi-author-name">נתן לום</p>
-                    <p class="testi-author-meta">לפני שנתיים · Google</p>
+                    <p class="testi-author-name">לאה כהן</p>
+                    <p class="testi-author-meta">רמת גן · Google</p>
                   </div>
                   <svg style="margin-right:auto" width="20" height="20" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
                 </div>
@@ -722,12 +785,57 @@
             <div class="carousel-slide">
               <div class="testi-card">
                 <div class="testi-stars">★★★★★</div>
-                <p class="testi-text">"שירות מצוין, מהירים, נוחים — ועם אחריות. הסבלנות ללקוח היא הדבר הכי חשוב, ובאורטודוק תמצאו בדיוק את זה."</p>
+                <p class="testi-text">"הגעתי לאורטודוק בהמלצת אישה מאד חשובה שיש לה מדרסים. יש לי בעיה אורטופדית מגיל 9 שרגל אחת קצרה בס"מ מהרגל השנייה, כך שיש לי באופן קבוע הנהגה ברגל שמאל. הגעתי לאיבחון, עשיתי הטבה והדברים שנאמרו לי היו מדויקים אחד לאחד. כרגע אני חודשים עם המדרסים והשינוי מדהים — גם מבחינת איזון הרגל וגם הגוף כולו. אני ממליצה לכל אחד שרוצה לדאוג לבריאות הגוף לעשות את המדרסים המיוחדים של אורטודוק."</p>
                 <div style="display:flex;align-items:center;gap:.75rem;">
-                  <div class="testi-avatar" style="background:linear-gradient(135deg,#667eea,#764ba2);">I</div>
+                  <div class="testi-avatar" style="background:linear-gradient(135deg,#667eea,#764ba2);">ל</div>
                   <div>
-                    <p class="testi-author-name">Itschak Rave</p>
-                    <p class="testi-author-meta">לפני שנה · Google</p>
+                    <p class="testi-author-name">ליר נווה</p>
+                    <p class="testi-author-meta">אילת · Google</p>
+                  </div>
+                  <svg style="margin-right:auto" width="20" height="20" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-slide">
+              <div class="testi-card">
+                <div class="testi-stars">★★★★★</div>
+                <p class="testi-text">"סבלתי תקופה ארוכה מכאבי גב וברכיים, לא יכולתי לעמוד בצורה רצופה ולא לשבת לזמן ממושך. בהמלצת אנשים יקרים הגעתי לאורטודוק — רחיאל איבחן את הבעיה תוך כמה דקות ותוך שבוע הכין לי מדרסים. אני כותב שורות אלו לאחר חודש מיום לבישתם — אני כבר לא אותו אדם. כאבי הרגליים והגב כלא היו, אני יכול שוב לעמוד ולשבת לזמן ממושך. איכות החיים שלי השתפרה מעבר לכל ציפייה. אני ממליץ לכל מי שסובל לפנות אך ורק לכאן."</p>
+                <div style="display:flex;align-items:center;gap:.75rem;">
+                  <div class="testi-avatar" style="background:linear-gradient(135deg,#ed8936,#c05621);">מ</div>
+                  <div>
+                    <p class="testi-author-name">משה כהן</p>
+                    <p class="testi-author-meta">ירושלים · Google</p>
+                  </div>
+                  <svg style="margin-right:auto" width="20" height="20" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-slide">
+              <div class="testi-card">
+                <div class="testi-stars">★★★★★</div>
+                <p class="testi-text">"הגעתי לאורטודוק לפני כשלוש שנים עם כאב ברכיים קשים וקשיים משמעותיים בהליכה. כיום, בעזרת המדרסים שהותאמו לי, ההליכה שלי השתפרה מאד, יש שיפור משמעותי בכאבי הברכיים, והצלחתי להשתחרר ממקלות ההליכה שבהם נעזרתי יום יומי. גם היציבה שלי השתפרה מאד. תודה לצוות אורטודוק!"</p>
+                <div style="display:flex;align-items:center;gap:.75rem;">
+                  <div class="testi-avatar" style="background:linear-gradient(135deg,#4299e1,#2b6cb0);">ר</div>
+                  <div>
+                    <p class="testi-author-name">רינה גוטלר</p>
+                    <p class="testi-author-meta">ירושלים · Google</p>
+                  </div>
+                  <svg style="margin-right:auto" width="20" height="20" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-slide">
+              <div class="testi-card">
+                <div class="testi-stars">★★★★★</div>
+                <p class="testi-text">"הנני למסור את תודתי הרבה לאורטודוק על הטיפול שקיבלתי בשבר רגל שמאל. כבר עברתי את גיל 65, קבעו שיש לי שבר בדרגה 4 מתוך 5 וכל מאמץ ברגל היה מלווה בכאבים. רחיאל פתח את המרפאה במיוחד בחול המועד, התאים לי מדרס ייחודי — ומיד יכולתי לעמוד ללא כאב וצעדתי 4 צעדים ללא עזרה. לאחר חצי שנה חזרתי לעבודה, והרופאים היו מופתעים מהתאחות השבר. יישר כח לצוות אורטודוק על הטיפול המסור!"</p>
+                <div style="display:flex;align-items:center;gap:.75rem;">
+                  <div class="testi-avatar" style="background:linear-gradient(135deg,#48bb78,#276749);">ש</div>
+                  <div>
+                    <p class="testi-author-name">שלמה נטה</p>
+                    <p class="testi-author-meta">ראשון-לציון · Google</p>
                   </div>
                   <svg style="margin-right:auto" width="20" height="20" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
                 </div>
@@ -743,10 +851,13 @@
             <button type="button" class="c-dot active" data-idx="0" aria-label="ביקורת 1" aria-current="true"></button>
             <button type="button" class="c-dot" data-idx="1" aria-label="ביקורת 2" aria-current="false"></button>
             <button type="button" class="c-dot" data-idx="2" aria-label="ביקורת 3" aria-current="false"></button>
+            <button type="button" class="c-dot" data-idx="3" aria-label="ביקורת 4" aria-current="false"></button>
+            <button type="button" class="c-dot" data-idx="4" aria-label="ביקורת 5" aria-current="false"></button>
+            <button type="button" class="c-dot" data-idx="5" aria-label="ביקורת 6" aria-current="false"></button>
           </div>
           <button type="button" class="c-arrow" id="next" aria-label="ביקורת הבאה">›</button>
         </div>
-        <div id="carousel-status" class="sr-only" aria-live="polite">ביקורת 1 מתוך 3</div>
+        <div id="carousel-status" class="sr-only" aria-live="polite">ביקורת 1 מתוך 6</div>
 
       </div>
     </section>
@@ -757,8 +868,6 @@
     <section id="cta" class="cta-section">
       <div class="cta-section-bg"></div>
       <div class="cta-section-inner">
-
-        <p class="section-label" style="color:rgba(255,255,255,.6);margin-bottom:1.2rem;"><span id="spots-cta">13</span> מקומות · אחרי זה נגמר</p>
 
         <h2 class="display-lg" style="color:#fff;margin-bottom:1rem;">
           אל תחכה<br>לכאב הבא.
@@ -796,7 +905,7 @@
               transition:transform .15s, box-shadow .15s;
             " onmouseover="this.style.transform='translate(-2px,-2px)';this.style.boxShadow='7px 7px 0 rgba(0,0,0,.25)'"
                onmouseout="this.style.transform='';this.style.boxShadow='5px 5px 0 rgba(0,0,0,.25)'">
-              קבע מקום עכשיו
+              קבע תור עכשיו
             </button>
             <div id="lead-success" hidden style="
               width:100%;padding:1rem 1.2rem;
@@ -839,7 +948,11 @@
           <p style="color:rgba(255,255,255,.4);font-size:.85rem;">בצלאל 12, רמת גן</p>
           <p style="color:rgba(255,255,255,.4);font-size:.85rem;margin-top:.2rem;">050-5752688</p>
         </div>
-        <a href="https://www.facebook.com/Orthodoc" target="_blank" rel="noopener" style="color:rgba(255,255,255,.35);font-size:.82rem;text-decoration:underline;">Facebook</a>
+        <div style="text-align:right;">
+<p style="color:rgba(255,255,255,.4);font-size:.85rem;margin-top:.5rem;"><a href="tel:0505752688" style="color:rgba(255,255,255,.4);text-decoration:none;">050-5752688</a></p>
+          <p style="color:rgba(255,255,255,.4);font-size:.85rem;margin-top:.2rem;"><a href="mailto:orthodocbiz@gmail.com" style="color:rgba(255,255,255,.4);text-decoration:none;">orthodocbiz@gmail.com</a></p>
+          <p style="color:rgba(255,255,255,.4);font-size:.85rem;margin-top:.2rem;">בצלאל 12, רמת גן</p>
+        </div>
       </div>
       <p style="font-size:.75rem;color:rgba(255,255,255,.22);line-height:1.65;margin-bottom:1rem;">
         המידע באתר זה נועד לצורכי מידע כללי בלבד ואינו מהווה עצה רפואית, אבחנה או טיפול.
@@ -867,7 +980,7 @@
       text-decoration:none;
     ">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 5.94 5.94l.91-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      קבע מקום — 0505752688
+      קבע תור — 0505752688
     </a>
   </div>
 
@@ -958,12 +1071,14 @@
       localStorage.setItem('ck_ok', '1');
     }
 
-    // Fade in hero portrait once loaded
+    // Fall-in hero portrait once image is loaded
     (function() {
+      const wrap = document.querySelector('.hero-portrait-wrap');
       const img = document.querySelector('.hero-portrait-wrap img');
-      if (!img) return;
-      if (img.complete && img.naturalWidth) { img.classList.add('img-loaded'); return; }
-      img.addEventListener('load', function() { img.classList.add('img-loaded'); });
+      if (!img || !wrap) return;
+      function triggerFall() { wrap.classList.add('portrait-ready'); }
+      if (img.complete && img.naturalWidth) { triggerFall(); return; }
+      img.addEventListener('load', triggerFall);
     })();
 
     // Sync main padding-top with actual sticky header height
@@ -1083,6 +1198,42 @@
   </script>
 
   <script>
+    function handleLeadFormInline(e) {
+      e.preventDefault();
+      var form = e.target;
+      var name = form.querySelector('.lf-name').value.trim();
+      var phone = form.querySelector('.lf-phone').value.trim();
+      var btn = form.querySelector('.lf-btn');
+      var successMsg = form.querySelector('.lf-success');
+      btn.disabled = true;
+      btn.textContent = 'שולח...';
+
+      fetch('https://hook.eu2.make.com/9mrrtzy71z45uv45fngyqq685qtfe5tp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name, phone: phone })
+      })
+      .then(function() {
+        form.reset();
+        form.style.display = 'none';
+        successMsg.hidden = false;
+        successMsg.focus();
+      })
+      .catch(function() {
+        btn.disabled = false;
+        btn.textContent = 'קבע תור עכשיו';
+        var errEl = form.querySelector('.lead-err');
+        if (!errEl) {
+          errEl = document.createElement('p');
+          errEl.className = 'lead-err';
+          errEl.style.cssText = 'color:#fff;font-size:.85rem;font-weight:700;text-align:center;margin:0;';
+          errEl.setAttribute('role', 'alert');
+          form.appendChild(errEl);
+        }
+        errEl.textContent = 'שגיאה בשליחה — נסה שוב או שלח בוואטסאפ';
+      });
+    }
+
     function handleLeadForm(e) {
       e.preventDefault();
       var name = document.getElementById('lead-name').value.trim();
@@ -1106,7 +1257,7 @@
       })
       .catch(function() {
         btn.disabled = false;
-        btn.textContent = 'קבע מקום עכשיו';
+        btn.textContent = 'קבע תור עכשיו';
         var errEl = form.querySelector('.lead-err');
         if (!errEl) {
           errEl = document.createElement('p');
